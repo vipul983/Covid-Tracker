@@ -1,0 +1,101 @@
+/* .cont{
+  text-align: center;
+} */
+h4{
+  display: inline;
+}
+h5{
+  display: inline;
+}
+.font{
+    font-weight: bold;
+    font-size: 20px;
+}
+h2{
+    display: block;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
+.grey{
+    color:gray;
+}
+.blue{
+    color: blue;
+}
+a{
+    display: block;
+    color: black;
+}
+.dropdown-menu{
+    max-height:250px;/* you can change as you need it */
+    overflow:auto;/* to get scroll */
+    width: 10%;
+ }
+ footer{
+   text-align: center;
+   background-color: #f8f9fa;
+ }
+ body{
+   background-image: url(bg4.png);
+   /* background-size: cover; */
+
+    background-repeat: repeat-y repeat-x;
+    /* bac */
+    scroll-behavior: smooth;
+
+   /* background-color: #84a9ac; */
+ }
+ em{
+   color: white;
+ }
+ .container {
+   position: relative;
+  width: 70%;
+ }
+ .newsheadline{
+   font-size: 20px;
+   text-align: left;
+   /* margin-top: 20px; */
+ }
+
+ .image {
+   opacity: 1;
+   display: block;
+   width: 100%;
+   height: auto;
+   transition: .5s ease;
+   backface-visibility: hidden;
+ }
+
+ .middle {
+   transition: .5s ease;
+   opacity: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   text-align: center;
+ }
+
+ .container:hover .image {
+   opacity: 0.3;
+ }
+
+ .container:hover .middle {
+   opacity: 1;
+ }
+ .btn{
+   margin: 10px;
+ }
+
+ /* .text {
+   background-color: #4CAF50;
+   color: white;
+   font-size: 16px;
+   padding: 16px 32px;
+ } */
