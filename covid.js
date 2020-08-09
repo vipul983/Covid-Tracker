@@ -99,6 +99,20 @@ if(data.articles[4].image!= null){
 
 
     });
+
+
+
+
+
+    // news ends here
+
+
+
+
+
+
+
+    // data api start
 var url = "https://api.covidindiatracker.com/state_data.json";
 var GiphyAJAXCall = new XMLHttpRequest();
 GiphyAJAXCall.open( 'GET', url );
@@ -117,8 +131,7 @@ GiphyAJAXCall.addEventListener('load', function( data ) {
 
 function pushToDom(input){
   // document.querySelector(".js-container").innerHTML = null ;
-  var tracker =JSON.parse(input);
-
+  var tracker = JSON.parse(input);
   console.log(tracker);
   var total =0;
   var totalactive = 0;
@@ -128,6 +141,12 @@ function pushToDom(input){
   var totalactivechange =0;
   var totalrecoveredchange =0;
   var totaldeathschange =0;
+
+
+
+  // india map
+
+
   google.charts.load('current', {
     'packages':['geochart'],
     // Note: you will need to get a mapsApiKey for your project.
@@ -171,19 +190,14 @@ function pushToDom(input){
       [tracker[28].state, tracker[28].confirmed],
       [tracker[29].state, tracker[29].confirmed],
       [tracker[30].state, tracker[30].confirmed],
-        [tracker[31].state, tracker[31].confirmed],
-          [tracker[32].state, tracker[32].confirmed],
-            [tracker[33].state, tracker[33].confirmed],
-              [tracker[34].state, tracker[34].confirmed],
-                [tracker[35].state, tracker[35].confirmed],
-                  [tracker[36].state, tracker[36].confirmed],
-                    [tracker[37].state, tracker[37].confirmed]
-
-
-
-
-
-    ]);
+      [tracker[31].state, tracker[31].confirmed],
+      [tracker[32].state, tracker[32].confirmed],
+      [tracker[33].state, tracker[33].confirmed],
+      [tracker[34].state, tracker[34].confirmed],
+      [tracker[35].state, tracker[35].confirmed],
+      [tracker[36].state, tracker[36].confirmed],
+      // [tracker[37].state, tracker[37].confirmed],
+]);
 
     var options = {
          region: 'IN', // India
@@ -198,10 +212,18 @@ function pushToDom(input){
     var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
     chart.draw(data, options);
-  }
-  for(var i =0 ;i<=37;i++){
 
-     total = total + tracker[i].confirmed;
+  }
+
+
+
+// calculating for india
+
+
+
+  for(var i=0 ;i<tracker.length;i++){
+     // console.log(tracker[i].confirmed)
+     total = total + tracker[i].confirmed ;
      totalactive = totalactive + tracker[i].active;
      totalrecovered = totalrecovered +tracker[i].recovered;
      totaldeaths +=tracker[i].deaths;
@@ -251,53 +273,154 @@ function pushToDom(input){
        };
 
 
+    //
+    // $(".statename").on("click", function(e) {
+    //   var sender = $(this);
+    //   var selectedstate = this.id;
+    //   console.log(selectedstate);
+    //   document.querySelector(".name").innerHTML = tracker[this.id].state;
+    //   document.querySelector(".statetotalcases").innerHTML = tracker[this.id].confirmed;
+    //   document.querySelector(".stateactivecases").innerHTML = tracker[this.id].active;
+    //   // ;
+    //   document.querySelector(".staterecovered").innerHTML = tracker[this.id].recovered;
+    //     //
+    //   document.querySelector(".statedeaths").innerHTML = tracker[this.id].deaths;
+    //     // ;
+    //     document.querySelector(".statedeathschanges").innerHTML ="+"+ tracker[this.id].dchanges;
+    //       document.querySelector(".statetotalcaseschange").innerHTML = "+" +tracker[this.id].cchanges;
+    //         document.querySelector(".staterecoveredchange").innerHTML = "+" +tracker[this.id].rchanges;
+    //           document.querySelector(".stateactivecaseschange").innerHTML =  "+" +tracker[this.id].achanges;
+    //           // document.querySelector(".activeprecentagestate").innerHTML = ((tracker[this.id].active/tracker[this.id].confirmed)*100).toFixed(1) + "%";
+    //           // document.querySelector(".recoveredprecentagestate").innerHTML =  + ((tracker[this.id].recovered/tracker[this.id].confirmed)*100).toFixed(1) + "%";
+    //           // document.querySelector(".deathsprecentagestate").innerHTML =  + ((tracker[this.id].deaths/tracker[this.id].confirmed)*100).toFixed(1) + "%";
+    //
+    //           google.charts.load("current", {packages:["corechart"]});
+    //              google.charts.setOnLoadCallback(drawChart);
+    //              function drawChart() {
+    //                var datapie = google.visualization.arrayToDataTable([
+    //                  ['activecases', 'precentage'],
+    //                  ['active',  tracker[selectedstate].active],
+    //                  ['recovered', tracker[selectedstate].recovered],
+    //                  ['deaths',  tracker[selectedstate].deaths],
+    //
+    //                ]);
+    //
+    //                var optionspie = {
+    //
+    //                  is3D: true,
+    //                  chartArea:{left:20,top:0,width:'90%',height:'75%'},
+    //                  pieSliceText : 'none' ,
+    //                  legend : 'left',
+    //                  'width' : 250
+    //                };
+    //
+    //                var chartpie = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+    //                chartpie.draw(datapie, optionspie);
+    //              };
 
-    $(".statename").on("click", function(e) {
-      var sender = $(this);
-      var selectedstate = this.id;
-      console.log(selectedstate);
-      document.querySelector(".name").innerHTML = tracker[this.id].state;
-      document.querySelector(".statetotalcases").innerHTML = tracker[this.id].confirmed;
-      document.querySelector(".stateactivecases").innerHTML = tracker[this.id].active;
-      // ;
-      document.querySelector(".staterecovered").innerHTML = tracker[this.id].recovered;
-        //
-      document.querySelector(".statedeaths").innerHTML = tracker[this.id].deaths;
-        // ;
-        document.querySelector(".statedeathschanges").innerHTML ="+"+ tracker[this.id].dchanges;
-          document.querySelector(".statetotalcaseschange").innerHTML = "+" +tracker[this.id].cchanges;
-            document.querySelector(".staterecoveredchange").innerHTML = "+" +tracker[this.id].rchanges;
-              document.querySelector(".stateactivecaseschange").innerHTML =  "+" +tracker[this.id].achanges;
-              // document.querySelector(".activeprecentagestate").innerHTML = ((tracker[this.id].active/tracker[this.id].confirmed)*100).toFixed(1) + "%";
-              // document.querySelector(".recoveredprecentagestate").innerHTML =  + ((tracker[this.id].recovered/tracker[this.id].confirmed)*100).toFixed(1) + "%";
-              // document.querySelector(".deathsprecentagestate").innerHTML =  + ((tracker[this.id].deaths/tracker[this.id].confirmed)*100).toFixed(1) + "%";
 
-              google.charts.load("current", {packages:["corechart"]});
-                 google.charts.setOnLoadCallback(drawChart);
-                 function drawChart() {
-                   var datapie = google.visualization.arrayToDataTable([
-                     ['activecases', 'precentage'],
-                     ['active',  tracker[selectedstate].active],
-                     ['recovered', tracker[selectedstate].recovered],
-                     ['deaths',  tracker[selectedstate].deaths],
+    // state data start
+                 var statedata = tracker;
 
-                   ]);
+                               var statelist = document.getElementById("dropdown-menu-state");
+                               while (statelist.hasChildNodes()) {
+                                   statelist.removeChild(statelist.firstChild);
+                               }
 
-                   var optionspie = {
+                               for (let i = 0; i < tracker.length; i++) {
 
-                     is3D: true,
-                     chartArea:{left:20,top:0,width:'90%',height:'75%'},
-                     pieSliceText : 'none' ,
-                     legend : 'left',
-                     'width' : 250
-                   };
+                                   let statedropdownelement = document.createElement('a');
 
-                   var chartpie = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-                   chartpie.draw(datapie, optionspie);
-                 };
+                                   let statelink = document.createTextNode(statedata[i].state);
+
+                                   statedropdownelement.appendChild(statelink);
+
+                                   // statedropdownelement.title = data[i].state;
+
+                                   statedropdownelement.id =  i;
+
+                                   statedropdownelement.className = "dropdown-item-state";
+
+                                   document.getElementById("dropdown-menu-state").appendChild(statedropdownelement);
+
+                               }
+
+                               document.getElementById("states").style.display = "block";
+                               $(".dropdown-item-state ").click(function () {
+
+
+
+
+                                  var clickedid2 = $(this).attr("id");
+                                  // var selectedstate= clickedid2;
+
+                                  console.log(this);
+                                  console.log(clickedid2);
+
+                                  // var sdata2 = window.tracker;
+
+                                  var statedata = tracker[clickedid2];
+                                  console.log(statedata);
+
+
+
+
+                                  document.querySelector(".name").innerHTML = statedata.state;
+
+
+                                  document.querySelector(".statetotalcases").innerHTML = statedata.confirmed;
+                                    document.querySelector(".stateactivecases").innerHTML = statedata.active;
+                                    // ;
+                                    document.querySelector(".staterecovered").innerHTML = statedata.recovered;
+                                  //     //
+                                    document.querySelector(".statedeaths").innerHTML = statedata.deaths;
+                                      // ;
+                                      document.querySelector(".statedeathschanges").innerHTML ="+"+ statedata.dchanges;
+                                        document.querySelector(".statetotalcaseschange").innerHTML = "+" +statedata.cchanges;
+                                          document.querySelector(".staterecoveredchange").innerHTML = "+" +statedata.rchanges;
+                                            document.querySelector(".stateactivecaseschange").innerHTML =  "+" +statedata.achanges;
+                                  // document.querySelector(".totaldistrictchanges").innerHTML = "+" + districtdata[clickedid2 - 100].cchange;
+
+
+                                            google.charts.load("current", {packages:["corechart"]});
+                                               google.charts.setOnLoadCallback(drawChart);
+                                               function drawChart() {
+                                                 var datapie = google.visualization.arrayToDataTable([
+                                                   ['activecases', 'precentage'],
+                                                   ['active',  tracker[clickedid2].active],
+                                                   ['recovered', tracker[clickedid2].recovered],
+                                                   ['deaths',  tracker[clickedid2].deaths],
+
+                                                 ]);
+
+                                                 var optionspie = {
+
+                                                   is3D: true,
+                                                   chartArea:{left:20,top:0,width:'90%',height:'75%'},
+                                                   pieSliceText : 'none' ,
+                                                   legend : 'left',
+                                                   'width' : 250
+                                                 };
+
+                                                 var chartpie = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                                                 chartpie.draw(datapie, optionspie);
+                                               };
+
+
+
+
+
+
+
+
+
+
+
+           // state data ends
 
 
       //district DATA
+
       var districtdata = tracker[this.id].districtData;
 
                     var districtlist = document.getElementById("dropdown-menu-district");
@@ -329,56 +452,25 @@ function pushToDom(input){
 
 
 
-                       var clickedid2 = $(this).attr("id");
+                       var clickedid3 = $(this).attr("id");
 
                        console.log(this);
                        console.log(clickedid2);
 
                        // var sdata2 = window.tracker;
 
-                       var districtdata = tracker[selectedstate].districtData;
+                       var districtdata = tracker[clickedid2].districtData;
                        console.log(districtdata);
 
 
 
 
-                       document.querySelector(".districtname").innerHTML = districtdata[clickedid2 - 100].name;
-                       document.querySelector(".totalcasesdistrict").innerText = districtdata[clickedid2 - 100].confirmed;
+                       document.querySelector(".districtname").innerHTML = districtdata[clickedid3 - 100].name;
+                       document.querySelector(".totalcasesdistrict").innerText = districtdata[clickedid3 - 100].confirmed;
                        // document.querySelector(".totaldistrictchanges").innerHTML = "+" + districtdata[clickedid2 - 100].cchange;
                     });
-
-
-
 
    });
 
 
-}// document.querySelector(".state").addEventListener('click',function(){
-//   for( var i=0 ;i<=37;i++){
-//      var a = document.createElement('a');
-//      var link = document.createTextNode(tracker[i].state);
-//      a.appendChild(link);
-//      a.id = i;
-//      a.href ="#";
-//      a.onClick ="reply_click(this.id)";
-//
-//      document.body.appendChild(a);
-//    }
-//
-//
-//  });
-
-
- // console.log(document.querySelector('.states').id);
-   // console.log(tracker[].active);
-
-   // console.log(tracker[0].active);
-
-
-
-
-
-       // console.log(state);
-     // console.log(tracker);}
-
-                // Append the anchor element to the bo
+   };
